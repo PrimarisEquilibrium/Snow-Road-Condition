@@ -1,16 +1,20 @@
+/* General Styles */
 html, body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Style for the app container */
 #app {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  position: relative; /* Ensure child elements (like button) can be positioned inside */
+  position: relative;
 }
 
+/* Map styling */
 #map {
   width: 100%;
   height: 100%;
@@ -18,20 +22,104 @@ html, body {
 
 /* Style the Clear Markers button */
 #clearMarkers {
-  position: absolute;  /* Position inside #app */
-  top: 10px;           /* 10px from the top */
-  left: 10px;          /* 10px from the left */
-  background: rgba(0, 0, 0, 0.7);  /* Dark background for visibility */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 14px;
   border-radius: 5px;
-  z-index: 1000;       /* Ensure it's above the map */
+  z-index: 1000;
   transition: background 0.2s;
 }
 
 #clearMarkers:hover {
   background: rgba(0, 0, 0, 0.9);
+}
+
+/* Login/Signup Page (snowy.html) */
+.snowy-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Login Box */
+.snowy-box {
+  max-width: 400px;
+  background: rgba(22, 33, 62, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 16px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Button Styles */
+.snowy-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.snowy-buttons button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.snowy-buttons button:active {
+  transform: scale(0.98);
+}
+
+/* Login & Signup Button Styling */
+.login-btn {
+  background: #e94560;
+  color: white;
+}
+
+.login-btn:hover {
+  background: #c82340;
+}
+
+.signup-btn {
+  background: #ff9f43;
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #e58e26;
 }
