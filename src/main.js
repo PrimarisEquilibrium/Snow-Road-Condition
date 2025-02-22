@@ -20,7 +20,7 @@ function onMapClick(e) {
   // Store the marker reference
   markers.push(marker);
 
-  // Add a remove option when clicking on a marker
+  // Add a remove option when clicking on a marker (right-click to remove)
   marker.on("contextmenu", function() {
     map.removeLayer(marker);
     markers = markers.filter(m => m !== marker);
@@ -31,8 +31,19 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 // Button to clear all markers
-document.getElementById("clearMarkers").addEventListener("click", function () {
-  markers.forEach(marker => map.removeLayer(marker));
-  markers = [];
-});
+const clearMarkersBtn = document.getElementById("clearMarkers");
 
+if (clearMarkersBtn) {
+  clearMarkersBtn.addEventListener("click", function () {
+    if (markers.length === 0) {
+      console.log("No markers to clear.");
+      return;
+    }
+
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = []; // Reset the marker array
+    console.log("All markers have been removed.");
+  });
+} else {
+  console.error("Button with ID 'clearMarkers' not found.");
+}
