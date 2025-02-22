@@ -1,0 +1,19 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrimarisEquilibrium/Snow-Road-Condition.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrimarisEquilibrium/Snow-Road-Condition/issues"
+  },
+  "homepage": "https://github.com/PrimarisEquilibrium/Snow-Road-Condition#readme",
+  "description": ""
+}
