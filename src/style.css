@@ -6,56 +6,87 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Style for the app container */
-#app {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Map styling */
-#map {
-  width: 100%;
-  height: 100%;
-}
-
-/* Style the Clear Markers button */
-#clearMarkers {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.7);
+/* Login Page (index.html) */
+body.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2b2b4e, #0d7aff);
   color: white;
+  text-align: center;
+}
+
+/* Login Container */
+.container {
+  max-width: 400px;
+  height: 490px;
+  background: rgba(32, 47, 88, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 85px;
+  font-weight: 700;
+  margin-bottom: 380px;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 16px;
+  margin-bottom: -280px;
+  opacity: 0.8;
+}
+
+/* Button Styles */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.buttons button {
+  width: 100%;
+  padding: 12px;
   border: none;
-  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 19px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
-  font-size: 14px;
-  border-radius: 5px;
-  z-index: 1000;
-  transition: background 0.2s;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-#clearMarkers:hover {
-  background: rgba(0, 0, 0, 0.9);
+.buttons button:active {
+  transform: scale(0.98);
 }
 
-/* Back to Home Button */
-#backToHome {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #e94560;
+/* Login & Signup Button Styling */
+.login-btn {
+  background: #6386e7de;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 5px;
-  z-index: 1000;
-  transition: background 0.2s;
 }
 
-#backToHome:hover {
-  background: #c82340;
+.login-btn:hover {
+  background: #4e6bbbde;
+}
+
+.signup-btn {
+  background: #14358fde;
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #102b75de;
 }
