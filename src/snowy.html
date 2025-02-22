@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Landing Page</title>
+    <title>Snowy - Welcome</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         body {
@@ -80,13 +80,18 @@
         <div class="logo">Snowy</div>
         <div class="tagline">Your go-to solution for seamless connectivity and safety.</div>
         <div class="buttons">
-            <button class="login-btn">Log In</button>
-            <button class="signup-btn">Sign Up</button>
+            <button class="login-btn" onclick="redirectToMap()">Log In</button>
+            <button class="signup-btn" onclick="redirectToMap()">Sign Up</button>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
+        
+        function redirectToMap() {
+            window.location.href = "index.html"; // Redirects to the map page
+        }
     </script>
 </body>
 </html>
