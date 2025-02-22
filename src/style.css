@@ -8,7 +8,7 @@ html, body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  position: relative;
+  position: relative; /* Ensure child elements (like button) can be positioned inside */
 }
 
 #map {
@@ -18,16 +18,18 @@ html, body {
 
 /* Style the Clear Markers button */
 #clearMarkers {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.7);
+  position: absolute;  /* Position inside #app */
+  top: 10px;           /* 10px from the top */
+  left: 10px;          /* 10px from the left */
+  background: rgba(0, 0, 0, 0.7);  /* Dark background for visibility */
   color: white;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 14px;
   border-radius: 5px;
+  z-index: 1000;       /* Ensure it's above the map */
+  transition: background 0.2s;
 }
 
 #clearMarkers:hover {
