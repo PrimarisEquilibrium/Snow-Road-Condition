@@ -1,254 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Landing Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #2b2b4e, #0d7aff);
-            color: white;
-            text-align: center;
-        }
-        .container {
-            max-width: 400px;
-            min-height: 490px;
-            background: rgba(32, 47, 88, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in-out;
-            position: relative; /* Needed for absolutely-positioned form container */
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .logo {
-            font-size: 85px;
-            font-weight: 700;
-            margin-bottom: 385px; /* DO NOT CHANGE */
-        }
-        .tagline {
-            font-size: 16px;
-            margin-bottom: -290px; /* DO NOT CHANGE */
-            opacity: 0.8;
-        }
-        /* Fade utility classes */
-        .fade-transition {
-            transition: opacity 0.5s ease;
-            opacity: 1;
-        }
-        .fade-hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        /* Button container */
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .buttons button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 19px;
-            font-weight: 600;
-            font-family: Arial, Helvetica, sans-serif;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.1s ease;
-        }
-        .buttons button:active {
-            transform: scale(0.98);
-        }
-        .login-btn {
-            background: #6386e7de;
-            color: white;
-        }
-        .login-btn:hover {
-            background: #4e6bbbde;
-        }
-        .signup-btn {
-            background: #14358fde;
-            color: white;
-        }
-        .signup-btn:hover {
-            background: #14307ede;
-        }
-        /* Form container */
-        .form-container {
-            display: none; /* We'll display it dynamically */
-            text-align: left;
-            position: absolute; /* Centered absolutely within .container */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 300px;
-        }
-        .form-container h2 {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .form-container input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        .form-container button {
-            cursor: pointer;
-            background: #6386e7;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-right: 10px;
-            font-size: 14px;
-        }
-        .form-container button:hover {
-            background: #4e6bbb;
-        }
-        .back-btn {
-            background: #ff4d4d;
-        }
-        .back-btn:hover {
-            background: #d13d3d;
-        }
-        @media (max-width: 480px) {
-            .container {
-                max-width: 90%;
-                height: auto;
-                padding: 30px;
-            }
-            .logo {
-                font-size: 64px;
-            }
-            .tagline {
-                font-size: 16px;
-            }
-            .buttons button {
-                font-size: 19px;
-                padding: 12px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snowy: Real-Time Winter Road Conditions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2b2b4e, #0d7aff);
+      color: white;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      min-height: 490px;
+      background: rgba(32, 47, 88, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+      position: relative; /* Needed for absolutely-positioned form container */
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .logo {
+      font-size: 85px;
+      font-weight: 700;
+      margin-bottom: 385px; /* DO NOT CHANGE */
+    }
+    .tagline {
+      font-size: 16px;
+      margin-bottom: -290px; /* DO NOT CHANGE */
+      opacity: 0.8;
+    }
+    /* Fade utility classes */
+    .fade-transition {
+      transition: opacity 0.5s ease;
+      opacity: 1;
+    }
+    .fade-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Button container */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .buttons button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 19px;
+      font-weight: 600;
+      font-family: Arial, Helvetica, sans-serif;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.1s ease;
+    }
+    .buttons button:active {
+      transform: scale(0.98);
+    }
+    .login-btn {
+      background: #6386e7de;
+      color: white;
+    }
+    .login-btn:hover {
+      background: #4e6bbbde;
+    }
+    .signup-btn {
+      background: #14358fde;
+      color: white;
+    }
+    .signup-btn:hover {
+      background: #14307ede;
+    }
+    /* Form container */
+    .form-container {
+      display: none; /* We'll display it dynamically */
+      text-align: left;
+      position: absolute; /* Centered absolutely within .container */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 300px;
+    }
+    .form-container h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .form-container button {
+      cursor: pointer;
+      background: #6386e7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    .form-container button:hover {
+      background: #4e6bbb;
+    }
+    .back-btn {
+      background: #ff4d4d;
+    }
+    .back-btn:hover {
+      background: #d13d3d;
+    }
+    @media (max-width: 480px) {
+      .container {
+        max-width: 90%;
+        height: auto;
+        padding: 30px;
+      }
+      .logo {
+        font-size: 64px;
+      }
+      .tagline {
+        font-size: 16px;
+      }
+      .buttons button {
+        font-size: 19px;
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container" data-aos="fade-up">
-        <div class="logo">Snowy</div>
-        <div class="tagline">Your go-to solution for seamless connectivity and safety.</div>
-        <!-- Buttons container -->
-        <div class="buttons fade-transition" id="buttons">
-            <button class="login-btn" onclick="showForm('login')">Log In</button>
-            <button class="signup-btn" onclick="showForm('signup')">Sign Up</button>
-        </div>
-
-        <!-- Form container -->
-        <div class="form-container fade-transition" id="formContainer">
-            <h2 id="formTitle"></h2>
-            <input type="text" placeholder="Username" id="username" required>
-            <input type="email" placeholder="Email" id="email" style="display: none;" required>
-            <input type="password" placeholder="Password" id="password" required>
-            <div>
-                <button onclick="submitForm()">Submit</button>
-                <button class="back-btn" onclick="goBack()">Back</button>
-            </div>
-        </div>
+  <div class="container" data-aos="fade-up">
+    <div class="logo">Snowy</div>
+    <div class="tagline">Stay safe with crowdsourced winter road alerts.</div>
+    <!-- Buttons container -->
+    <div class="buttons fade-transition" id="buttons">
+      <button class="login-btn" onclick="showForm('login')">Log In</button>
+      <button class="signup-btn" onclick="showForm('signup')">Sign Up</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init();
+    <!-- Form container -->
+    <div class="form-container fade-transition" id="formContainer">
+      <h2 id="formTitle"></h2>
+      <!-- We'll show/hide these fields dynamically -->
+      <input type="text" placeholder="Username" id="username" required />
+      <input type="email" placeholder="Email" id="email" required />
+      <input type="password" placeholder="Password" id="password" required />
+      <div>
+        <button onclick="submitForm()">Submit</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
+      </div>
+    </div>
+  </div>
 
-        let isSignUp = false;
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
 
-        function showForm(type) {
-            const buttons = document.getElementById('buttons');
-            const formContainer = document.getElementById('formContainer');
-            const formTitle = document.getElementById('formTitle');
-            const emailField = document.getElementById('email');
+    let isSignUp = false;
 
-            if (type === 'login') {
-                formTitle.textContent = 'Log In';
-                isSignUp = false;
-                emailField.style.display = 'none';
-            } else {
-                formTitle.textContent = 'Sign Up';
-                isSignUp = true;
-                emailField.style.display = 'block';
-            }
+    function showForm(type) {
+      const buttons = document.getElementById('buttons');
+      const formContainer = document.getElementById('formContainer');
+      const formTitle = document.getElementById('formTitle');
+      const usernameField = document.getElementById('username');
+      const emailField = document.getElementById('email');
+      
+      // Reset field values
+      usernameField.value = '';
+      emailField.value = '';
+      document.getElementById('password').value = '';
 
-            buttons.classList.add('fade-hidden');
-            setTimeout(() => {
-                buttons.style.display = 'none';
+      if (type === 'login') {
+        formTitle.textContent = 'Log In';
+        isSignUp = false;
+        // Hide username field, show email
+        usernameField.style.display = 'none';
+        emailField.style.display = 'block';
+      } else {
+        formTitle.textContent = 'Sign Up';
+        isSignUp = true;
+        // Show both username & email for signup
+        usernameField.style.display = 'block';
+        emailField.style.display = 'block';
+      }
 
-                formContainer.style.display = 'block';
-                void formContainer.offsetWidth;
-                formContainer.classList.remove('fade-hidden');
-            }, 500);
+      buttons.classList.add('fade-hidden');
+      setTimeout(() => {
+        buttons.style.display = 'none';
+        formContainer.style.display = 'block';
+        void formContainer.offsetWidth; // trigger reflow
+        formContainer.classList.remove('fade-hidden');
+      }, 500);
+    }
+
+    function goBack() {
+      const buttons = document.getElementById('buttons');
+      const formContainer = document.getElementById('formContainer');
+
+      formContainer.classList.add('fade-hidden');
+      setTimeout(() => {
+        formContainer.style.display = 'none';
+        buttons.style.display = 'flex';
+        void buttons.offsetWidth; // trigger reflow
+        buttons.classList.remove('fade-hidden');
+      }, 500);
+    }
+
+    // Validation for Sign Up
+    function validateSignUp(username, email, password) {
+      if (!username.trim() || !email.trim() || !password.trim()) {
+        alert('Please fill in Username, Email, and Password.');
+        return false;
+      }
+      // Additional check: email format
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+      // (Optionally) check password length or other constraints
+      if (password.length < 4) {
+        alert('Password must be at least 4 characters.');
+        return false;
+      }
+      return true;
+    }
+
+    // Validation for Log In
+    function validateLogin(email, password) {
+      if (!email.trim() || !password.trim()) {
+        alert('Please fill in both Email and Password.');
+        return false;
+      }
+      return true;
+    }
+
+    async function submitForm() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (isSignUp) {
+        if (!validateSignUp(username, email, password)) {
+          return;
         }
-
-        function goBack() {
-            const buttons = document.getElementById('buttons');
-            const formContainer = document.getElementById('formContainer');
-
-            formContainer.classList.add('fade-hidden');
-            setTimeout(() => {
-                formContainer.style.display = 'none';
-                buttons.style.display = 'flex';
-                void buttons.offsetWidth;
-                buttons.classList.remove('fade-hidden');
-            }, 500);
+      } else {
+        if (!validateLogin(email, password)) {
+          return;
         }
+      }
 
-        async function submitForm() {
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+      // Build request data
+      const endpoint = isSignUp ? '/register' : '/login';
+      const payload = isSignUp ? { username, email, password } : { email, password };
 
-            const endpoint = isSignUp ? '/register' : '/login';
-            const payload = isSignUp ? { username, email, password } : { email, password };
+      try {
+        const response = await fetch(`http://localhost:3000${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-            try {
-                const response = await fetch(`http://localhost:3000${endpoint}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                });
+        const data = await response.json();
 
-                const data = await response.json();
-
-                if (response.ok) {
-                    localStorage.setItem('token', data.token); // Save JWT
-                    window.location.href = '/map.html'; // Redirect to map
-                } else {
-                    alert(data.message || 'Error');
-                }
-            } catch (error) {
-                alert('An error occurred');
-            }
+        if (response.ok) {
+          localStorage.setItem('token', data.token); // Save JWT
+          window.location.href = '/map.html'; // Redirect to map
+        } else {
+          alert(data.message || 'Error');
         }
-    </script>
+      } catch (error) {
+        alert('An error occurred');
+      }
+    }
+  </script>
 </body>
 </html>
