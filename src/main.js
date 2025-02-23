@@ -47,3 +47,10 @@ if (clearMarkersBtn) {
 } else {
   console.error("Button with ID 'clearMarkers' not found.");
 }
+
+// Function to add a marker at the center of the map
+document.getElementById("addMarkerBtn").addEventListener("click", function () {
+    let center = map.getCenter();
+    let marker = L.marker([center.lat, center.lng], { draggable: true }).addTo(map);
+    marker.bindPopup(`📍 New Marker<br>Latitude: ${center.lat.toFixed(4)}<br>Longitude: ${center.lng.toFixed(4)}`).openPopup();
+});
