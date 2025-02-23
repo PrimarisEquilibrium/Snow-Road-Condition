@@ -47,3 +47,24 @@ if (clearMarkersBtn) {
 } else {
   console.error("Button with ID 'clearMarkers' not found.");
 }
+
+// Function to add a marker at the center of the map
+document.getElementById("addMarkerBtn").addEventListener("click", function () {
+    let center = map.getCenter();
+    let marker = L.marker([center.lat, center.lng], { draggable: true }).addTo(map);
+    marker.bindPopup(`📍 New Marker<br>Latitude: ${center.lat.toFixed(4)}<br>Longitude: ${center.lng.toFixed(4)}`).openPopup();
+});
+
+// Add a logout button to the map page
+const logoutButton = document.createElement('button');
+logoutButton.textContent = 'Logout';
+logoutButton.style.position = 'absolute';
+logoutButton.style.top = '10px';
+logoutButton.style.right = '10px';
+logoutButton.style.zIndex = 1000;
+document.body.appendChild(logoutButton);
+
+logoutButton.addEventListener('click', () => {
+    localStorage.removeItem('token'); // Remove JWT
+    window.location.href = '/index.html'; // Redirect to login
+});

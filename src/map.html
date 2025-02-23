@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snow Road Condition Map</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="map"></div>
+        <button id="clearMarkers">Clear Markers</button>
+    
+        <!-- Button Container -->
+        <div class="button-stack">
+            <button class="round-button" title="Report Ice">❄️</button>
+            <button class="round-button" title="Add Marker">📍</button>
+            <button class="round-button" title="Notifications">🔔</button>
+            <button class="round-button" title="Settings">⚙️</button>
+        </div>
+    </div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- Main JavaScript File -->
+    <script type="module" src="main.js"></script>
+
+    <!-- Authentication Check -->
+    <script>
+        // Check if the user is logged in
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login page if no token is found
+            window.location.href = '/index.html';
+        } else {
+            // Verify the token with the server
+            fetch('http://localhost:3000/map', {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        // Redirect to login if the token is invalid
+                        localStorage.removeItem('token'); // Clear invalid token
+                        window.location.href = '/index.html';
+                    }
+                })
+                .catch(() => {
+                    // Redirect to login on network error
+                    localStorage.removeItem('token'); // Clear invalid token
+                    window.location.href = '/index.html';
+                });
+        }
+    </script>
+</body>
+</html>
