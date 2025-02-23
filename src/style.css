@@ -32,7 +32,7 @@ html, body {
 }
 
 /* Toggle Button (☰ Markers)
-   1) Uses a pulse animation to draw attention
+   1) Pulse animation to draw attention
    2) Slight style changes for visibility */
 .toggle-btn {
   background: #ffffff;
@@ -54,9 +54,9 @@ html, body {
 }
 /* Simple "pulse" keyframes to draw attention */
 @keyframes pulse {
-  0% { transform: scale(1);   }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1);    }
 }
 
 /* The collapsible button stack container */
@@ -68,7 +68,7 @@ html, body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   max-height: 0;             /* collapsed by default */
   overflow: hidden;          /* hide items when collapsed */
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -79,32 +79,40 @@ html, body {
   padding: 10px;
 }
 
-/* Each button-item is now fully clickable (icon + label).
-   We'll use a hover effect that affects both. */
+/* Entire row is clickable & hovers together */
 .button-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  cursor: pointer; /* Make entire item clickable */
+  cursor: pointer; /* Make entire row clickable */
   padding: 5px 0;
   border-radius: 6px;
   transition: background-color 0.2s, transform 0.2s;
 }
+
+/* Hover effect on entire row */
 .button-item:hover {
   background-color: rgba(211, 236, 250, 0.3);
-  /* Soft highlight on hover */
   transform: translateY(-1px);
 }
 
-/* Round Buttons
-   1) Transparent or lightly tinted background
-   2) Slight shadow or border for definition */
+/* 
+  "selected" state (once clicked),
+   for a persistent highlight. 
+   We'll add this class in JS.
+*/
+.button-item.selected {
+  background-color: rgba(58, 154, 255, 0.3);
+  box-shadow: 0 0 6px rgba(58, 154, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Round Buttons: lightly tinted background, slight shadow/border */
 .round-button {
   background: rgba(255, 255, 255, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.4);
   width: 60px;
   height: 60px;
-  cursor: pointer;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -123,10 +131,7 @@ html, body {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Button Label 
-   - Transparent background 
-   - Light text color 
-   - Slight shadow for readability */
+/* Button Label: translucent with a slight shadow */
 .button-label {
   font-size: 14px;
   font-weight: 500;

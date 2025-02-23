@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Snowy: Real-Time Winter Road Conditions</title>
+  <title>FrostAlert: Real-Time Winter Road Conditions</title>
   <!-- Leaflet CSS -->
   <link
     rel="stylesheet"
@@ -11,8 +11,8 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   />
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="/src/style.css" />
+  <!-- Custom Styles (our style.css) -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="app">
@@ -25,71 +25,84 @@
 
       <!-- Collapsible Button Stack -->
       <div class="button-stack" id="buttonStack">
-        <div class="button-item">
-          <button class="round-button" title="Slippery Sidewalk">
+        <!-- 
+          Each "button-item" has data attributes:
+          data-icon, data-marker
+        -->
+        <div class="button-item" 
+             data-icon="icons/SlipperySidewalk.png" 
+             data-marker="Slippery Sidewalk">
+          <div class="round-button">
             <img src="icons/SlipperySidewalk.png" alt="Slippery Sidewalk" class="button-icon" />
-          </button>
+          </div>
           <span class="button-label">Slippery Sidewalk</span>
         </div>
-        <div class="button-item">
-          <button class="round-button" title="Slippery Road">
+
+        <div class="button-item"
+             data-icon="icons/SlipperyRoad.png" 
+             data-marker="Slippery Road">
+          <div class="round-button">
             <img src="icons/SlipperyRoad.png" alt="Slippery Road" class="button-icon" />
-          </button>
+          </div>
           <span class="button-label">Slippery Road</span>
         </div>
-        <div class="button-item">
-          <button class="round-button" title="Snow Buildup">
+
+        <div class="button-item"
+             data-icon="icons/SnowBuildup.png" 
+             data-marker="Snow Buildup">
+          <div class="round-button">
             <img src="icons/SnowBuildup.png" alt="Snow Buildup" class="button-icon" />
-          </button>
+          </div>
           <span class="button-label">Snow Buildup</span>
         </div>
-        <div class="button-item">
-          <button class="round-button" title="Car Crash">
+
+        <div class="button-item"
+             data-icon="icons/CarCrash.png" 
+             data-marker="Car Crash">
+          <div class="round-button">
             <img src="icons/CarCrash.png" alt="Car Crash" class="button-icon" />
-          </button>
+          </div>
           <span class="button-label">Car Crash</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Leaflet JavaScript -->
+  <!-- Leaflet JS -->
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""
   ></script>
 
-  <!-- Main JavaScript File -->
+  <!-- Main JavaScript (our main.js) -->
   <script type="module" src="main.js"></script>
 
   <!-- Authentication Check -->
   <script>
-    // Check if the user is logged in
+    // Check if user is logged in
     const token = localStorage.getItem('token');
     if (!token) {
-      // Redirect to login page if no token is found
+      // Redirect if no token
       window.location.href = '/index.html';
     } else {
-      // Verify the token with the server
+      // Verify token with server
       fetch('http://localhost:3000/map', {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(response => {
           if (!response.ok) {
-            // If the token is invalid, remove & redirect
             localStorage.removeItem('token');
             window.location.href = '/index.html';
           }
         })
         .catch(() => {
-          // On network error, also remove & redirect
           localStorage.removeItem('token');
           window.location.href = '/index.html';
         });
     }
 
-    // Simple toggle function for the collapsible button stack
+    // Collapsible toggle function
     function toggleButtons() {
       const stack = document.getElementById('buttonStack');
       stack.classList.toggle('open');
